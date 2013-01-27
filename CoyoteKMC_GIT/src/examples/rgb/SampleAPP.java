@@ -24,7 +24,6 @@ public class SampleAPP {
         ALayerShape rgb = null;
         try {
             rgb = new LayerRGB();
-
         } catch (Exception ex) {
             System.out.println("Não foi possível inicializar a Layer");
         }
