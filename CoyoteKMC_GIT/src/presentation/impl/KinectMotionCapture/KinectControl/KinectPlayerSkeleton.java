@@ -84,6 +84,7 @@ public class KinectPlayerSkeleton implements Runnable {
         return Long.MAX_VALUE;
     }
 
+    @Override
     public void run() {
         while (true) {
             try {

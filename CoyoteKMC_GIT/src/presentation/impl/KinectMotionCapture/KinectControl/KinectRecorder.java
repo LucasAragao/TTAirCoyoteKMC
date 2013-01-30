@@ -4,14 +4,14 @@
  */
 package presentation.impl.KinectMotionCapture.KinectControl;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.ListIterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -37,16 +37,9 @@ public class KinectRecorder {
     //------------------------------------
     private static LinkedList<ObjectKMC> list_obj_rgb = new LinkedList<ObjectKMC>();
 
-
-    public static void recRGB2(){
-        
-        
-    }
-    
     public static synchronized void setUriRGB(String uri) {
         uriRGB = uri;
         objRGB = new ObjectKMC(uri);
-
     }
 
     public static void setUriDepht(String uri) {
@@ -98,8 +91,6 @@ public class KinectRecorder {
     }
 
     public static synchronized void recorderImageRGB() {
-
-        //        KinectManager.getContext().waitAnyUpdateAll();
         startRecorder();
         lr.setRgbList(imageToArray((BufferedImage) KinectAccess.getImageRGB24()));
         bufferingRGB();
@@ -134,7 +125,6 @@ public class KinectRecorder {
     }
 
     private static void recRGB() {
-
         objRGB.reset();
         objRGB.rewrite();
         objRGB.writeOBJ(lr);
@@ -167,41 +157,25 @@ public class KinectRecorder {
     }
 
     public static synchronized void recorderImageDepht() {
-        try {
-            KinectManager.getContext().waitAnyUpdateAll();
-            startRecorder();
-            lr.setDephtList(imageToArray((BufferedImage) KinectAccess.getDephtImageWithUser()), KinectAccess.getHistogramDepht());
-            bufferingDepht();
-        } catch (StatusException ex) {
-            System.out.println("Não foi possível realizar update");
-            objRGB.closeFile();
-        }
+        startRecorder();
+        lr.setDephtList(imageToArray((BufferedImage) KinectAccess.getDephtImageWithUser()), KinectAccess.getHistogramDepht());
+        bufferingDepht();
+
     }
 
     public static synchronized void recorderImageUser() {
-        try {
-            KinectManager.getContext().waitAnyUpdateAll();
-            startRecorder();
-            lr.setUserList(imageToArray((BufferedImage) KinectAccess.getScreenUsers(null)));
-            bufferingUser();
-        } catch (StatusException ex) {
-            System.out.println("Não foi possível realizar update");
-            objUser.closeFile();
-        }
+        startRecorder();
+        lr.setUserList(imageToArray((BufferedImage) KinectAccess.getScreenUsers(null)));
+        bufferingUser();
+
     }
 
     public static synchronized void recorderSkeleton() {
-        try {
-            KinectManager.getContext().waitAnyUpdateAll();
-            startRecorder();
-            Skeleton su = KinectAccess.getSkeletons();
-            // System.out.println("Teste"+su.getListPoints().get(0).getX());
-            lr.setSkeletonList(su);
-            bufferingSkeleton();
-        } catch (Exception ex) {
-            System.out.println("Não foi possível realizar update Skeleton");
-            objSkeleton.closeFile();
-        }
+        startRecorder();
+        Skeleton su = KinectAccess.getSkeletons();
+        lr.setSkeletonList(su);
+        bufferingSkeleton();
+
     }
 
     public static synchronized void closeFileDepht() {
@@ -265,4 +239,6 @@ public class KinectRecorder {
     public static synchronized void closeAccess() {
         KinectManager.closeDown();
     }
+
+   
 }

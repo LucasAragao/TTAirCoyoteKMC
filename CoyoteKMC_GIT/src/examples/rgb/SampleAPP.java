@@ -4,9 +4,11 @@
  */
 package examples.rgb;
 
+import java.awt.Color;
 import java.awt.Frame;
 import presentation.ALayerShape;
 import presentation.impl.KinectMotionCapture.KinectControl.KinectAccess;
+import presentation.impl.KinectMotionCapture.KinectControl.KinectRecorderSeqImagesUser;
 import presentation.impl.KinectMotionCapture.layers.LayerRGB;
 import presentation.impl.KinectMotionCapture.layers.ScreenPanel;
 
