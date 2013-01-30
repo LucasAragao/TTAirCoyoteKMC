@@ -103,7 +103,7 @@ public class KinectRecorderSeqImagesUser implements Runnable {
     }
 
     private static String nameFileDateFormat() {
-        DateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy hh.mm.ss");
+        DateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy hh.mm.ss.SSS");
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         return dFormat.format(calendar.getTime());
