@@ -20,14 +20,17 @@ public class ScreenPanel extends JPanel {
     int width = KinectAccess.getPrefSize().width;
     int height = KinectAccess.getPrefSize().height;
 
-    public void addLayerShape(ALayerShape shape){
+    public void addLayerShape(ALayerShape shape) {
         this.shapes.add(shape);
     }
-    
+
+    public void removeLayerShape(ALayerShape shape) {
+        this.shapes.removeElement(shape);
+    }
 
     @Override
     public void paint(Graphics g) {
-        
+
         super.paint(g);
         for (int i = 0; i < shapes.size(); i++) {
             ALayerShape shape = (ALayerShape) shapes.elementAt(i);
