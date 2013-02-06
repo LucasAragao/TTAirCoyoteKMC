@@ -20,23 +20,19 @@ import presentation.impl.SkeletonShapeImpl;
 public class SampleNightVision {
 
     public static void main(String[] args) {
-      //  KinectAccess.setSecurityMode(true);
+        KinectAccess.setSecurityMode(true);
         //1º Cria um ScreenPanel
         ScreenPanel scp = new ScreenPanel();
         //2º Cria uma variável do tipo ALayerShape e instancia a Layer que deseja exibir. 
         //Esta por sua vez lança uma exceção que pode se tratada.
-        ALayerShape rgb = null;
-        ALayerShape skeleton = null;
+        ALayerShape night = null;
         try {
-            rgb = new LayerNightVision();
-            skeleton = new LayerSkeletonBone();
-            ((LayerSkeletonBone) skeleton).setVisibleBoneByID(EBone.ALL);
+            night = new LayerNightVision();
         } catch (Exception ex) {
             System.out.println("Não foi possível inicializar a Layer");
         }
         //3º Adionamos a Layer no ScreenPanel
-        scp.addLayerShape(rgb);
-        scp.addLayerShape(skeleton);
+        scp.addLayerShape(night);
         //4º Criamos um Frame
         Frame f = new Frame();
         //5º logo após inserimos o ScreenPanel no Frame
