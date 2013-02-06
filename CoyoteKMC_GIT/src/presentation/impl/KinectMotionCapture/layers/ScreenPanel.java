@@ -30,12 +30,13 @@ public class ScreenPanel extends JPanel {
 
     @Override
     public void paint(Graphics g) {
-
-        super.paint(g);
-        for (int i = 0; i < shapes.size(); i++) {
-            ALayerShape shape = (ALayerShape) shapes.elementAt(i);
-            shape.draw(g);
+        if (!shapes.isEmpty()) {
+            super.paint(g);
+            for (int i = 0; i < shapes.size(); i++) {
+                ALayerShape shape = (ALayerShape) shapes.elementAt(i);
+                shape.draw(g);
+            }
+            this.repaint();
         }
-        this.repaint();
     }
 }
