@@ -62,4 +62,14 @@ public class LayerSkeletonBone extends ALayerShape {
             bones[eBone.ordinal()] = true;
         }
     }
+
+    public void setInvisibleBoneByID(EBone eBone) {
+        if (eBone == EBone.ALL) {
+            for (int i = 1; i <= 16; i++) {
+                bones[i] = false;
+            }
+        } else {
+            bones[eBone.ordinal()] = false;
+        }
+    }
 }
